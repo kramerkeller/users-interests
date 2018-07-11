@@ -1,0 +1,51 @@
+VIEW
+
+Layout
+  Template
+  Footer
+    Display: "There are 3 users with a total of 9 interests."
+
+Home Page
+  Redirects to users page
+
+Users Page (users.erb) template
+  List @users names with links to users
+
+User Page (user.erb) template
+  Show user @email
+  List user @interests (comma separated)
+  List @other_users names with links to other users
+
+MODEL
+
+Users
+  name
+  email
+  interests (array)
+
+
+CONTROLLER
+
+before do
+  @users = load users from yaml file
+  @total_users
+  @total_interests
+
+helper
+  lists users given users
+
+/
+  redirect to users
+
+/users
+  provide @users
+
+  erb: users
+
+/users/name
+  find user matching name from @users
+  provide user @email
+  provide user @interests
+  provide @other_users
+
+  erb: user
